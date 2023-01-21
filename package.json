@@ -1,0 +1,7 @@
+{
+  "name": "weatherapp-backbone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "miketabb33 <miketabb33@gmail.com>",
+  "license": "MIT"
+}
