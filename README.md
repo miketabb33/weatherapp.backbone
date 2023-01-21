@@ -6,5 +6,10 @@ Learn backbone by building a simple web app.
 
 ## Getting Started
 
+### Start the project
+
 1. `yarn install`
-2. `yarn start`
+2. `yarn build`
+3. `yarn start`
+
+visit [localhost:3000](http://localhost:3000/)
