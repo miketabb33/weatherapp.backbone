@@ -6,9 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server.ts",
-    "dev": "yarn build && yarn start",
-    "build": "bash buildStatic.bash && webpack",
-    "build:watch": "bash buildStatic.bash && webpack --watch"
+    "build": "bash buildStatic.bash && webpack --watch",
+    "build:prod": "bash buildStatic.bash && webpack "
   },
   "dependencies": {
     "backbone": "^1.4.1",
