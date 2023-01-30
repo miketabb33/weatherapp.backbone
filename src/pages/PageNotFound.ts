@@ -5,7 +5,7 @@ import { Config } from '../config'
 
 const PageNotFound = Backbone.View.extend({
   el: Config.appNodeId,
-  template: _.template($('#pageNotFound').html()),
+  template: _.template($('#pageNotFoundTemplate').html()),
   initialize: function () {
     this.render()
   },
