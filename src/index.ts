@@ -1,3 +1,6 @@
 import Router from './router'
+import jQuery from 'jquery'
 
-const _ = new Router()
+jQuery(function () {
+  const _ = new Router()
+})

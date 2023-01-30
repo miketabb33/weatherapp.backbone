@@ -3,6 +3,7 @@ echo "building..."
 
 echo "dist directory exists. copying html and css"
 
-cp "public/index.html" "dist"
+ts-node buildIndex.ts
 cp "public/styles.css" "dist"
+
 echo "html and css successfully copied."
