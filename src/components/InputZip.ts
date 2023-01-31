@@ -3,6 +3,8 @@ import _ from 'underscore'
 import $ from 'jquery'
 
 const InputZip = Backbone.View.extend({
+  tagName: 'div',
+  className: 'inputZip__container',
   template: _.template($('#inputZipTemplate').html()),
   initialize: function (onSubmit: (value: string) => void) {
     this.onSubmit = onSubmit
