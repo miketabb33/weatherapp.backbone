@@ -9,10 +9,6 @@ const InputZip = Backbone.View.extend({
     this.button = this.$('#inputZipButton')
     this.render()
   },
-  render: function () {
-    this.$el.html(this.template())
-    return this
-  },
   events: {
     'click #inputZipButton': 'onButtonClick',
     'change #inputZipInput': 'onChangeValue',
@@ -23,6 +19,10 @@ const InputZip = Backbone.View.extend({
   onChangeValue: function (e: any) {
     const val = $(e.currentTarget).val()
     this.inputVal = val
+  },
+  render: function () {
+    this.$el.html(this.template())
+    return this
   },
 })
 
