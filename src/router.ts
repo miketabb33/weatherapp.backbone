@@ -25,8 +25,7 @@ const Router = Backbone.Router.extend({
   currentPage: function () {
     return currentPage
   },
-  initialize: function (routes: any) {
-    this.routes = routes
+  initialize: function () {
     Backbone.history.start()
   },
   routes: {
@@ -37,7 +36,7 @@ const Router = Backbone.Router.extend({
   },
 
   details: function (zip: string) {
-    setCurrentPage({ id: 'details', instance: new Details() })
+    setCurrentPage({ id: 'details', instance: new Details(zip) })
   },
 
   home: function () {
