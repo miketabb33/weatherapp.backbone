@@ -19,11 +19,16 @@ const Router = Backbone.Router.extend({
   },
   routes: {
     params: 'params',
+    'details/:zip': 'details',
     '': 'home',
     '*notFound': 'notFound',
   },
   params: function (params: string) {
     console.log('app.router.params = ' + params) // just for didactical purposes.
+  },
+
+  details: function (zip: string) {
+    console.log(zip)
   },
 
   home: function () {
