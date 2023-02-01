@@ -1,6 +1,7 @@
 import Backbone from 'backbone'
 import _ from 'underscore'
 import $ from 'jquery'
+import { validateZip } from '../logic/validateZip'
 
 const InputZip = Backbone.View.extend({
   tagName: 'div',
@@ -16,14 +17,20 @@ const InputZip = Backbone.View.extend({
     'change #inputZipInput': 'onChangeValue',
   },
   onButtonClick: function () {
-    this.onSubmit(this.inputVal)
+    try {
+      const inputVal = this.inputVal
+      validateZip(inputVal)
+      this.onSubmit(inputVal)
+    } catch (error) {
+      this.render(error)
+    }
   },
   onChangeValue: function (e: any) {
     const val = $(e.currentTarget).val()
     this.inputVal = val
   },
-  render: function () {
-    this.$el.html(this.template())
+  render: function (error: string = '') {
+    this.$el.html(this.template({ error }))
     return this
   },
 })

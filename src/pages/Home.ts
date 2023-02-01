@@ -3,6 +3,7 @@ import _ from 'underscore'
 import $ from 'jquery'
 import { Config } from '../config'
 import InputZip from '../components/InputZip'
+import { router } from '..'
 
 const Home = Backbone.View.extend({
   el: Config.appNodeId,
@@ -12,11 +13,11 @@ const Home = Backbone.View.extend({
   },
   render: function () {
     this.$el.html(this.template())
-    const inputZip = new InputZip(this.didSubmit)
+    const inputZip = new InputZip(this.didSubmitZip)
     $('#input').html(inputZip.render().el)
   },
-  didSubmit: function (value: string) {
-    console.log(value)
+  didSubmitZip: function (zip: string) {
+    router.navigate(`#details/${zip}`, true)
   },
 })
 

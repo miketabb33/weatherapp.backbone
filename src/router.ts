@@ -1,20 +1,32 @@
 import Backbone from 'backbone'
 import PageNotFound from './pages/PageNotFound'
 import Home from './pages/Home'
+import Details from './pages/Details'
 
 type CurrentPage = {
-  instance: any
   id: string
+  instance: any
 }
 
-let currentPage: CurrentPage
+let currentPage: CurrentPage = {
+  id: 'none',
+  instance: 'none',
+}
 
-export const getCurrentPage = () => {
-  return currentPage
+const setCurrentPage = (newPage: CurrentPage) => {
+  console.log('Page Loaded: ', newPage)
+  currentPage = {
+    id: newPage.id,
+    instance: newPage.instance,
+  }
 }
 
 const Router = Backbone.Router.extend({
-  initialize: function () {
+  currentPage: function () {
+    return currentPage
+  },
+  initialize: function (routes: any) {
+    this.routes = routes
     Backbone.history.start()
   },
   routes: {
@@ -23,26 +35,17 @@ const Router = Backbone.Router.extend({
     '': 'home',
     '*notFound': 'notFound',
   },
-  params: function (params: string) {
-    console.log('app.router.params = ' + params) // just for didactical purposes.
-  },
 
   details: function (zip: string) {
-    console.log(zip)
+    setCurrentPage({ id: 'details', instance: new Details() })
   },
 
   home: function () {
-    currentPage = {
-      instance: new Home(),
-      id: 'home',
-    }
+    setCurrentPage({ id: 'home', instance: new Home() })
   },
 
   notFound: function () {
-    currentPage = {
-      instance: new PageNotFound(),
-      id: 'pageNotFound',
-    }
+    setCurrentPage({ id: 'pageNotFound', instance: new PageNotFound() })
   },
 })
 
