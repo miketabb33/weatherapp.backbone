@@ -2,24 +2,42 @@ import Backbone from 'backbone'
 import _ from 'underscore'
 import $ from 'jquery'
 import { Config } from '../config'
-import ForecastCollection from '../models/ForecastCollection'
-import { Forecast } from '../models/Forecast'
+import ForecastModel from '../models/ForecastModel'
 
 const Details = Backbone.View.extend({
   el: Config.appNodeId,
-  template: _.template($('#detailsTemplate').html()),
+  baseTemplate: _.template($('#detailsTemplate').html()),
+
   initialize: function (zip: string) {
     this.zip = zip
     this.zipUrl = Config.apiUrl(zip)
 
+    this.forecastModel = new ForecastModel(zip)
+    this.listenTo(this.forecastModel, 'sync change', this.renderForecast)
+    this.listenTo(this.forecastModel, 'error', this.renderError)
+
+    this.forecastModel.fetch()
     this.render()
-    this.forecastCollection = new ForecastCollection(zip)
-    this.forecastCollection.fetchForecast().then((forecast: Forecast) => {
-      console.log(forecast)
-    })
   },
+
   render: function () {
-    this.$el.html(this.template({ zip: this.zip, zipUrl: this.zipUrl }))
+    console.log('state:', this.forecastModel.toJSON())
+
+    if (!this.initialRenderCompleted) {
+      this.$el.html(this.baseTemplate({ zip: this.zip, zipUrl: this.zipUrl }))
+    }
+
+    if (this.forecastModel.get('success')) {
+    } else {
+    }
+  },
+
+  renderForecast: function () {
+    console.log('forecast!!!!!')
+  },
+
+  renderError: function () {
+    console.log('ERROR!!!!!!')
   },
 })
 
