@@ -8,7 +8,6 @@ const ForecastModel = Backbone.Model.extend({
   url: function () {
     return Config.apiUrl(this.get('zip'))
   },
-  default: null,
 })
 
 export default ForecastModel

@@ -1,6 +1,7 @@
 import Backbone from 'backbone'
 import _ from 'underscore'
 import $ from 'jquery'
+import { assembleForecast } from '../logic/assembleForecast'
 
 const Forecast = Backbone.View.extend({
   tagName: 'div',
@@ -18,8 +19,13 @@ const Forecast = Backbone.View.extend({
   },
 
   renderForecast: function () {
+    const forecast = assembleForecast(this.model.toJSON())
+    console.log(forecast)
     this.$el.html(
       this.successTemplate({
+        cityName: forecast.city.name,
+        temperature: forecast.list[0].main.temp,
+        status: forecast.list[0].weather[0].description,
         zip: this.model.get('zip') || 'No Zip',
         zipUrl: this.model.url(),
       })
