@@ -3,12 +3,12 @@ import { Config } from '../config'
 
 const ForecastModel = Backbone.Model.extend({
   initialize: function (zip: string) {
-    this.zip = zip
+    this.set('zip', zip)
   },
   url: function () {
-    return Config.apiUrl(this.zip)
+    return Config.apiUrl(this.get('zip'))
   },
-  default: null
+  default: null,
 })
 
 export default ForecastModel

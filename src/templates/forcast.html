@@ -1,0 +1,21 @@
+<style>
+  .forecast__container {
+    height: 80px;
+  }
+</style>
+
+<script type="text/template" id="forecast_error">
+  <div>yo you got and error</div>
+</script>
+
+<script type="text/template" id="forecast_success">
+  <h1>Showing details for Zip: <%=zip%></h1>
+  <div id="ZipResults">
+  <br>
+  <br>
+  <a href=<%=zipUrl%> target="_blank">See Json</a>
+</script>
+
+<script type="text/template" id="forecast_loading">
+  Loading...
+</script>
