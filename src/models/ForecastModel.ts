@@ -8,10 +8,7 @@ const ForecastModel = Backbone.Model.extend({
   url: function () {
     return Config.apiUrl(this.zip)
   },
-  parse: function (data: any) {
-    console.log('ERROR BRO')
-    return { ...data, success: data.cod === '200' }
-  },
+  default: null
 })
 
 export default ForecastModel
